@@ -1,0 +1,56 @@
+1. 테이블 만들기 1
+
+   이름 : MEMBER
+   컬럼 : MEMBERID (문자열), PASSWD (문자열), EMAIL(문자열)
+          PHONE (문자열), USERTYPE (문자열 - 'USER', 'ADMIN'),
+          REGDATE(날짜), ACTIVE (문자 1)
+   PK : MEMBERID
+   DEFAULT : USERTYPE -> 'USER'
+   DEFAULT : ACTIVE -> '1'
+   DEFAULT : REGDATE -> SYSDATE
+
+2. 테이블 만들기 2
+
+   이름 : BOARD
+   컬럼 : BOARDNO(숫자), TITLE(문자열), WRITER(문자열), 
+          CONTENT(문자열), REGDATE(날짜), READCOUNT(숫자), DELETED (문자 1)
+   PK : BOARDNO
+   DEFAULT : REGDATE -> SYSDATE
+   DEFAULT : READCOUNT -> 0
+   DEFAULT : DELETED -> '0'
+   CHECK : READCOUNT >= 0
+
+   
+3. 테이블 수정
+
+   BOARD TABLE에 외래키 생성 : WRITER 컬럼이 MEMBER 테이블의 MEMBERID 컬럼을 참조하도록 구성
+   
+4. 시퀀스 만들기
+
+   이름 : BOARD_SEQUENCE
+   시작값 : 1
+   증가값 : 1
+   캐시 사용하지 않음
+   
+5. MEMBER 테이블에 데이터 삽입
+
+   iamuserone, 9922, iamuserone@example.com, 010-3625-4758
+   
+   iamusertwo, 9922, iamusertwo@example.com, 010-4587-1246 + USERTYPE : ADMIN
+   
+   iamuserthree, 9922, iamuserthree@example.com, 010-4587-1246 + ACTIVE : 0, REGDATE : 2019-05-01
+   
+6. 데이터 수정
+
+   iamuserthree 사용자의 REGDATE를 현재 시간으로 변경
+   
+   iamusertwo 사용자의 전화번호를 010-9988-2244로 USERTYPE을 USER로 변경
+   
+   iamuserone 사용자 데이터 삭제
+   
+7. BOARDTABLE에 데이터 삽입
+
+   자동증가값, 글쓰기 연습, iamusertwo, 글쓰기 연습입니다
+   
+   자동증가값, 글쓰기 연습2, iamusertwo, 글쓰기 연습입니다 2 + READCOUNT : 10
+
